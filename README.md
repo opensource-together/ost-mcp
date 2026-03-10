@@ -2,7 +2,7 @@
 
 > Ask your AI agent to find open-source projects. It just works.
 
-Search, discover, and explore **1000+ open-source projects** directly from Claude Desktop, Cursor, Windsurf, or any MCP-compatible client — without leaving your IDE.
+Search, discover, and explore open-source projects directly from Claude Desktop, Cursor, Windsurf, or any MCP-compatible client — without leaving your IDE.
 
 ## Quick Start
 
