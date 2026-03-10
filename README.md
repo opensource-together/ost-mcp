@@ -19,12 +19,6 @@ Add this to your MCP client config:
 }
 ```
 
-That's it. Ask your agent:
-
-- *"Find me React projects for e-commerce"*
-- *"What's trending in open source right now?"*
-- *"Show me projects similar to FastAPI"*
-
 ## Tools
 
 | Tool | What it does |
@@ -39,26 +33,20 @@ That's it. Ask your agent:
 
 ## How it works
 
-```
-You ask your agent --> ost-mcp (stdio) --> OST Linker API --> projects found
-```
+Ask your agent > [@ost-mcp](https://github.com/opensource-together/ost-mcp) > [@ost-linker](https://github.com/opensource-together/ost-linker) > projects found
 
-The MCP server connects to the [OST Linker](https://github.com/opensource-together/ost-linker) recommendation engine, which uses pgvector embeddings for semantic search and similarity matching.
+- *"Find me React projects for e-commerce"*
+- *"What's trending in open source right now?"*
+- *"Show me projects similar to FastAPI"*
 
 ## Development
 
 ```bash
 npm install
-npm test        # 14 tests
+npm test
 npm run build
-npm run dev     # watch mode
+npm run dev
 ```
-
-## Links
-
-- [OpenSourceTogether](https://opensource-together.com/)
-- [OST Linker](https://github.com/opensource-together/ost-linker) — AI recommendation API
-- [MCP Protocol](https://modelcontextprotocol.io/)
 
 ## License
 
