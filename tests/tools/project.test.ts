@@ -23,4 +23,28 @@ describe("get_project tool", () => {
     expect(result).toContain("Web Development");
     expect(result).toContain("Python");
   });
+
+  it("handles null fields with fallbacks", async () => {
+    const mockClient = {
+      getProject: vi.fn().mockResolvedValue({
+        id: "1",
+        title: "Minimal",
+        description: null,
+        repo_url: null,
+        published: false,
+        trending: false,
+        logo_url: null,
+        categories: [],
+        domains: [],
+        tech_stacks: [],
+      }),
+    } as unknown as OSTClient;
+
+    const tool = createGetProjectTool(mockClient);
+    const result = await tool.handler({ project_id: "1" });
+
+    expect(result).toContain("No description");
+    expect(result).toContain("N/A");
+    expect(result).toContain("None");
+  });
 });

@@ -17,4 +17,15 @@ describe("find_similar tool", () => {
     expect(result).toContain("85");
     expect(mockClient.findSimilar).toHaveBeenCalledWith("1", 5);
   });
+
+  it("returns message when no similar projects found", async () => {
+    const mockClient = {
+      findSimilar: vi.fn().mockResolvedValue([]),
+    } as unknown as OSTClient;
+
+    const tool = createSimilarTool(mockClient);
+    const result = await tool.handler({ project_id: "1", limit: 5 });
+
+    expect(result).toContain("No similar projects found");
+  });
 });

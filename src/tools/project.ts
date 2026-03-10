@@ -2,7 +2,7 @@ import { z } from "zod";
 import type { OSTClient } from "../client.js";
 
 export const getProjectSchema = z.object({
-  project_id: z.string().describe("UUID of the project"),
+  project_id: z.string().uuid().describe("UUID of the project"),
 });
 
 export function createGetProjectTool(client: OSTClient) {

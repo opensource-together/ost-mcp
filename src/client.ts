@@ -15,7 +15,9 @@ export class OSTClient {
   }
 
   private async request<T>(path: string): Promise<T> {
-    const response = await fetch(`${this.baseUrl}${path}`);
+    const response = await fetch(`${this.baseUrl}${path}`, {
+      signal: AbortSignal.timeout(10_000),
+    });
     if (!response.ok) {
       const body = await response.json().catch(() => ({}));
       throw new Error(

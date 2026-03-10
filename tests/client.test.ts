@@ -18,7 +18,8 @@ describe("OSTClient", () => {
     const result = await client.searchProjects({ q: "react", limit: 5 });
     expect(result).toEqual(mockResponse);
     expect(fetch).toHaveBeenCalledWith(
-      expect.stringContaining("/projects/search?q=react&limit=5")
+      expect.stringContaining("/projects/search?q=react&limit=5"),
+      expect.objectContaining({ signal: expect.any(AbortSignal) })
     );
   });
 

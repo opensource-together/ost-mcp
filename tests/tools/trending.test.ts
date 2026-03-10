@@ -17,4 +17,28 @@ describe("get_trending tool", () => {
     expect(result).toContain("5000");
     expect(mockClient.getTrending).toHaveBeenCalledWith(10);
   });
+
+  it("returns message when no trending projects found", async () => {
+    const mockClient = {
+      getTrending: vi.fn().mockResolvedValue([]),
+    } as unknown as OSTClient;
+
+    const tool = createTrendingTool(mockClient);
+    const result = await tool.handler({ limit: 10 });
+
+    expect(result).toContain("No trending projects found");
+  });
+
+  it("shows ? when stars is null", async () => {
+    const mockClient = {
+      getTrending: vi.fn().mockResolvedValue([
+        { project_id: "1", stars: null, last_synced_at: null },
+      ]),
+    } as unknown as OSTClient;
+
+    const tool = createTrendingTool(mockClient);
+    const result = await tool.handler({ limit: 10 });
+
+    expect(result).toContain("?");
+  });
 });

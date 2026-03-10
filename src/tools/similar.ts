@@ -2,7 +2,7 @@ import { z } from "zod";
 import type { OSTClient } from "../client.js";
 
 export const similarSchema = z.object({
-  project_id: z.string().describe("UUID of the project to find similar projects for"),
+  project_id: z.string().uuid().describe("UUID of the project to find similar projects for"),
   limit: z.number().min(1).max(50).optional().default(10).describe("Max results"),
 });
 
