@@ -1,8 +1,8 @@
 # @opensource-together/mcp
 
-> Ask your AI agent to find open-source projects. It just works.
+> Need a project? Just ask your agent.
 
-Search, discover, and explore open-source projects directly from Claude Desktop, Cursor, Windsurf, or any MCP-compatible client — without leaving your IDE.
+Stop browsing GitHub. Tell your AI agent what you need — it finds the right open-source project for you. Works in Claude Desktop, Cursor, Windsurf, and any MCP-compatible client.
 
 ## Quick Start
 
@@ -40,7 +40,7 @@ That's it. Ask your agent:
 ## How it works
 
 ```
-Your AI Agent --> ost-mcp (stdio) --> OST Linker API --> 1000+ projects
+You ask your agent --> ost-mcp (stdio) --> OST Linker API --> projects found
 ```
 
 The MCP server connects to the [OST Linker](https://github.com/opensource-together/ost-linker) recommendation engine, which uses pgvector embeddings for semantic search and similarity matching.
