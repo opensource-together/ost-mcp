@@ -2,7 +2,7 @@
 
 > Need a project? Just ask your agent.
 
-Stop browsing GitHub. Tell your AI agent what you need — it finds the right open-source project for you. Works in Claude Desktop, Cursor, Windsurf, and any MCP-compatible client.
+Stop browsing GitHub. Tell your AI agent what you need — it finds the right open-source project for you. Works with Claude Desktop, Cursor, Windsurf, OpenClaw, Claude Code, and any MCP-compatible agent.
 
 ## Quick Start
 
