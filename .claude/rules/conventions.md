@@ -14,8 +14,4 @@
 
 ## Git
 - Conventional commits: `feat:`, `fix:`, `test:`, `chore:`, `docs:`
-- Co-Author: spidecode-bot <263227865+spicode-bot@users.noreply.github.com>
-
-## Implementation Plan
-- Full implementation plan is at: `/home/spidey/git/ost-linker/specs/2026-03-10-ost-mcp-plan.md`
 - Follow TDD: write failing test first, then implement
