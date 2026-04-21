@@ -16,7 +16,7 @@ import {
 } from "./tools/references.js";
 
 const config = getConfig();
-const client = new OSTClient(config.apiUrl);
+const client = new OSTClient(config.apiUrl, config.apiKey);
 
 const server = new McpServer({
   name: "ost-mcp",

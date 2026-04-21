@@ -9,13 +9,18 @@ import type {
 
 export class OSTClient {
   private baseUrl: string;
+  private apiKey: string;
 
-  constructor(baseUrl: string) {
+  constructor(baseUrl: string, apiKey: string) {
     this.baseUrl = baseUrl;
+    this.apiKey = apiKey;
   }
 
   private async request<T>(path: string): Promise<T> {
     const response = await fetch(`${this.baseUrl}${path}`, {
+      headers: {
+        Authorization: `Bearer ${this.apiKey}`,
+      },
       signal: AbortSignal.timeout(10_000),
     });
     if (!response.ok) {
