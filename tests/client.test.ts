@@ -3,9 +3,10 @@ import { OSTClient } from "../src/client.js";
 
 describe("OSTClient", () => {
   let client: OSTClient;
+  const apiKey = "test-key";
 
   beforeEach(() => {
-    client = new OSTClient("https://api.example.com");
+    client = new OSTClient("https://api.example.com", apiKey);
   });
 
   it("searchProjects calls correct URL with query params", async () => {
@@ -19,7 +20,27 @@ describe("OSTClient", () => {
     expect(result).toEqual(mockResponse);
     expect(fetch).toHaveBeenCalledWith(
       expect.stringContaining("/projects/search?q=react&limit=5"),
-      expect.objectContaining({ signal: expect.any(AbortSignal) })
+      expect.objectContaining({
+        headers: { Authorization: `Bearer ${apiKey}` },
+        signal: expect.any(AbortSignal),
+      })
+    );
+  });
+
+  it("attaches a bearer token on successful requests", async () => {
+    global.fetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: () => Promise.resolve([]),
+    });
+
+    await client.getTrending();
+
+    expect(fetch).toHaveBeenCalledWith(
+      "https://api.example.com/recommendations/trending",
+      expect.objectContaining({
+        headers: { Authorization: `Bearer ${apiKey}` },
+        signal: expect.any(AbortSignal),
+      })
     );
   });
 

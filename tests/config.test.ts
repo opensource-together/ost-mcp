@@ -19,6 +19,14 @@ describe("getConfig", () => {
     expect(config.apiUrl).toBe("https://api.example.com");
   });
 
+  it("returns the OST_API_KEY from environment", () => {
+    process.env.OST_API_KEY = "test-key";
+
+    const config = getConfig();
+
+    expect(config.apiKey).toBe("test-key");
+  });
+
   it("uses default URL when OST_API_URL is not set", () => {
     process.env.OST_API_KEY = "test-key";
     delete process.env.OST_API_URL;
