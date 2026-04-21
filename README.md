@@ -13,11 +13,37 @@ Add this to your MCP client config:
   "mcpServers": {
     "ost": {
       "command": "npx",
-      "args": ["@opensource-together/mcp"]
+      "args": ["@opensource-together/mcp"],
+      "env": {
+        "OST_API_KEY": "your-personal-access-token"
+      }
     }
   }
 }
 ```
+
+> Generate your key at your OpenSource Together account settings.
+
+## Distribution
+
+Published as `@opensource-together/mcp` on npm. Example client config:
+
+```json
+{
+  "mcpServers": {
+    "ost": {
+      "command": "npx",
+      "args": ["@opensource-together/mcp"],
+      "env": {
+        "OST_API_KEY": "your-personal-access-token",
+        "OST_API_URL": "https://api.opensource-together.com/v1/mcp"
+      }
+    }
+  }
+}
+```
+
+> Generate your key at your OpenSource Together account settings.
 
 ## Tools
 
@@ -33,7 +59,7 @@ Add this to your MCP client config:
 
 ## How it works
 
-Ask your agent > [@ost-mcp](https://github.com/opensource-together/ost-mcp) > [@ost-linker](https://github.com/opensource-together/ost-linker) > projects found
+Ask your agent > [@ost-mcp](https://github.com/opensource-together/ost-mcp) > [@ost-backend](https://github.com/opensource-together/ost-backend) > projects found
 
 - *"Find me React projects for e-commerce"*
 - *"What's trending in open source right now?"*
@@ -47,6 +73,13 @@ npm test
 npm run build
 npm run dev
 ```
+
+## Environment Variables
+
+| Variable | Purpose | Default |
+|------|-------------|---------|
+| `OST_API_KEY` | Personal Access Token from your OST account | Required |
+| `OST_API_URL` | MCP gateway base URL | `https://api.opensource-together.com/v1/mcp` |
 
 ## License
 

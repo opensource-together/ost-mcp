@@ -4,7 +4,7 @@
 
 OST MCP is the Model Context Protocol server for [OpenSourceTogether](https://opensource-together.com/). It lets developers discover and explore open-source projects directly from Claude Desktop, IDEs, and other MCP-compatible clients.
 
-It consumes the OST Linker REST API and exposes 7 MCP tools for project search, discovery, and similarity.
+It consumes the OST backend MCP gateway and exposes 7 MCP tools for project search, discovery, and similarity.
 
 ## Common Commands
 
@@ -27,11 +27,11 @@ npx vitest --watch             # Watch mode
 ## Architecture
 
 ```
-User (Claude Desktop/IDE) -> MCP Server (stdio) -> OSTClient (HTTP) -> OST Linker API
+User (Claude Desktop/IDE) -> MCP Server (stdio) -> OSTClient (HTTP) -> OST backend MCP gateway
 ```
 
 - `src/index.ts` — MCP server entry point, registers all tools
-- `src/client.ts` — HTTP client for the OST Linker REST API
+- `src/client.ts` — HTTP client for the OST backend MCP gateway
 - `src/tools/` — One file per MCP tool (or group)
 - `src/config.ts` — Reads `OST_API_URL` from env
 - `src/types.ts` — Shared TypeScript types
@@ -52,7 +52,8 @@ User (Claude Desktop/IDE) -> MCP Server (stdio) -> OSTClient (HTTP) -> OST Linke
 
 | Variable | Purpose | Default |
 |----------|---------|---------|
-| `OST_API_URL` | OST Linker API base URL | `https://api.opensource-together.com` |
+| `OST_API_KEY` | Personal Access Token from your OST account | **required** |
+| `OST_API_URL` | OST backend MCP gateway base URL | `https://api.opensource-together.com/v1/mcp` |
 
 ## Related Repos
 
@@ -70,9 +71,12 @@ Published as `@opensource-together/mcp` on npm. Users install via:
       "command": "npx",
       "args": ["@opensource-together/mcp"],
       "env": {
-        "OST_API_URL": "https://api.opensource-together.com"
+        "OST_API_KEY": "your-personal-access-token",
+        "OST_API_URL": "https://api.opensource-together.com/v1/mcp"
       }
     }
   }
 }
 ```
+
+> Generate your key at your OpenSource Together account settings.
