@@ -20,10 +20,27 @@ export class OSTClient {
     });
     if (!response.ok) {
       const body = await response.json().catch(() => ({}));
-      throw new Error(
-        (body as { detail?: string }).detail ||
-          `API error: ${response.status}`
-      );
+      const detail = (body as { detail?: string }).detail;
+
+      if (response.status === 401 || response.status === 403) {
+        throw new Error(
+          "Invalid or missing OST_API_KEY. Generate or regenerate a Personal Access Token in your OpenSource Together account settings."
+        );
+      }
+
+      if (response.status === 429) {
+        const retryAfter = response.headers.get("Retry-After");
+        const retryWindow = retryAfter ? `${retryAfter} seconds` : "shortly";
+        throw new Error(`Rate limit exceeded. Retry in ${retryWindow}.`);
+      }
+
+      if (response.status >= 500) {
+        throw new Error(
+          `OST backend temporarily unavailable (status ${response.status}). Please try again shortly.`
+        );
+      }
+
+      throw new Error(detail || `API error: ${response.status}`);
     }
     return response.json() as Promise<T>;
   }
