@@ -1,6 +1,6 @@
 {
   "name": "@opensource-together/mcp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "MCP server for discovering open-source projects via OST Linker",
   "type": "module",
   "bin": {
